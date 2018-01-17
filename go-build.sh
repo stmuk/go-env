@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 set -x 
 
 VERSION=$1
@@ -41,6 +40,8 @@ ${GO} get -u -v github.com/golang/dep/cmd/dep
 ${GO} get -u -v github.com/derekparker/delve/cmd/dlv # broken FreeBSD
 
 SCRIPT=${HOME}/bin/go${VERSION}
+
+echo "add ${SCRIPT} to PATH"
 cat << EOF > ${SCRIPT}
 #!/bin/sh
 exec ${GO} "\$@"
