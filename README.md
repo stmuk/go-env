@@ -1,4 +1,5 @@
 # go-env
-Vendor some basic go (delve debugger etc.) libraries for personal dev use
+Shell script to build various versions of go using goroot under home directory
+Edit
 
-steve.mynott@gmail.com 20180109
+steve.mynott@gmail.com 20180117
