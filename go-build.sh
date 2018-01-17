@@ -57,9 +57,10 @@ fi
 
 SCRIPT=${HOME}/bin/go${VERSION}
 
-echo "add ${SCRIPT} to PATH"
 cat << EOF > ${SCRIPT}
 #!/bin/sh
 exec ${GO} "\$@"
 EOF
 chmod 755 ${SCRIPT}
+
+echo "add ${SCRIPT} to PATH"
