@@ -50,7 +50,10 @@ fi
 
 ${GO} get -v -v golang.org/x/tools/cmd/...
 ${GO} get -u -v github.com/golang/dep/cmd/dep
-${GO} get -u -v github.com/derekparker/delve/cmd/dlv # broken FreeBSD
+
+if [[ ! $(uname) =~ "FreeBSD"]]
+    ${GO} get -u -v github.com/derekparker/delve/cmd/dlv
+fi
 
 SCRIPT=${HOME}/bin/go${VERSION}
 
