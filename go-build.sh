@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 if [ ! -z "$DEBUG" ]
 then
     set -x 
@@ -9,11 +11,18 @@ VERSION=$1
 
 if [ -z "$VERSION" ]
 then
-    echo "supply version as arg, eg. 1.4, tip"
+    echo "Supply version as arg, eg. 1.4, 1.10beta2, tip etc."
+    echo "NOTE go1.4 needs to be in place to cross compile later versions"
     exit 1
 fi
 
-if [[ $VERSION =~ ^[0-9.]+ ]]; then 
+if [[ $VERSION =~ ^[0-9.]+[beta|rc] ]]; then 
+
+    GOROOT=${HOME}/go${VERSION}
+    git clone https://go.googlesource.com/go ${GOROOT}
+    cd ${GOROOT} && git checkout go${VERSION}
+
+elif [[ $VERSION =~ ^[0-9.]+$ ]]; then 
 
     GOROOT=${HOME}/go${VERSION}
     git clone https://go.googlesource.com/go ${GOROOT}
@@ -27,6 +36,7 @@ elif [[ $VERSION == "tip" ]]; then
 
 else
     echo "not recognised try 'tip'"
+    exit 1
 fi
 
 cd src && ./all.bash
