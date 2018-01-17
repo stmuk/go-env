@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-set -x 
+if [ ! -z "$DEBUG" ]
+then
+    set -x 
+fi
 
 VERSION=$1
 
@@ -10,7 +13,7 @@ then
     exit 1
 fi
 
-if [[ $VERSION =~ ^[0-9.]+$ ]]; then 
+if [[ $VERSION =~ ^[0-9.]+ ]]; then 
 
     GOROOT=${HOME}/go${VERSION}
     git clone https://go.googlesource.com/go ${GOROOT}
