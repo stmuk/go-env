@@ -51,7 +51,7 @@ fi
 ${GO} get -v -v golang.org/x/tools/cmd/...
 ${GO} get -u -v github.com/golang/dep/cmd/dep
 
-if [[ ! $(uname) =~ "BSD"]]
+if [[ ! $(uname) =~ "BSD" ]]; then
     ${GO} get -u -v github.com/derekparker/delve/cmd/dlv
 fi
 
